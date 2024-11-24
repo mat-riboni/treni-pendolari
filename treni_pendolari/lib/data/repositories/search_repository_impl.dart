@@ -39,7 +39,6 @@ class SearchRepositoryImpl implements SearchRepository {
           duration: solution.duration,
           departureTrack: trains[0].departureTripTrack,
           nodes: solution.nodes);
-      print(tripModel.departureTrack);
       tripsFound.add(tripModel);
     }
 

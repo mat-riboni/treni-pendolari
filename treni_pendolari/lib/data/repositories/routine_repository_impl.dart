@@ -13,13 +13,17 @@ class RoutineRepositoryImpl implements RoutineRepository {
   Routine getRoutine() {
     final String departureFrom = spRoutine.getDepartureFrom() ?? "";
     final String departureFromId = spRoutine.getDepartureFromId() ?? "";
+    final String departureFromCode = spRoutine.getDepartureFromCode() ?? "";
     final String departureTo = spRoutine.getDepartureTo() ?? "";
     final String departureToId = spRoutine.getDepartureToId() ?? "";
+    final String departureToCode = spRoutine.getDepartureToCode() ?? "";
     final String departureTime = spRoutine.getDepartureTime() ?? "";
     final String homecomingFrom = spRoutine.getHomecomingFrom() ?? "";
     final String homecomingFromId = spRoutine.getHomecomingFromId() ?? "";
+    final String homecomingFromCode = spRoutine.getHomecomingFromCode() ?? "";
     final String homecomingTo = spRoutine.getHomecomingTo() ?? "";
     final String homecomingToId = spRoutine.getHomecomingToId() ?? "";
+    final String homecomingToCode = spRoutine.getHomecomingToCode() ?? "";
     final String homecomingTime = spRoutine.getHomecomingTime() ?? "";
     final String switchTripTime = spRoutine.getSwitchTripTime() ?? "";
     final bool isFirstOpening = spRoutine.getIsFirstOpening() ?? true;
@@ -27,14 +31,18 @@ class RoutineRepositoryImpl implements RoutineRepository {
     final RoutineTripModel departure = RoutineTripModel(
         from: departureFrom,
         fromId: departureFromId,
+        fromCode: departureFromCode,
         to: departureTo,
         toId: departureToId,
+        toCode: departureToCode,
         departureTime: departureTime);
     final RoutineTripModel homecoming = RoutineTripModel(
         from: homecomingFrom,
         fromId: homecomingFromId,
+        fromCode: homecomingFromCode,
         to: homecomingTo,
         toId: homecomingToId,
+        toCode: homecomingToCode,
         departureTime: homecomingTime);
 
     return RoutineModel(departure, homecoming, isFirstOpening, switchTripTime);

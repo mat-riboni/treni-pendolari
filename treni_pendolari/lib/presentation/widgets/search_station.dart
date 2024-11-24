@@ -128,10 +128,11 @@ class _SearchStationPageState extends State<SearchStationPage> {
                 },
                 onChanged: (value) async {
                   List<Station> stations = await _getStationsByName(value);
-                  if (mounted)
+                  if (mounted) {
                     setState(() {
                       availableStations = stations;
                     });
+                  }
                 },
                 decoration:
                     const InputDecoration(hintText: "Stazione di partenza")

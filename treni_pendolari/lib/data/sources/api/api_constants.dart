@@ -23,10 +23,6 @@ class ApiConstants {
   /// @param {int} arrivalLocationId : id della stazione di partenza restituita dall'autocomplete di "leFrecce"
   static Map<String, dynamic> findSolutionsBody(String depratureLocationId,
       String arrivalLocationId, DateTime departureTime) {
-    print("--------------------");
-    print(DateFormat("yyyy-MM-ddTHH:mm:ss").format(departureTime));
-    print("--------------------");
-
     Map<String, dynamic> body = {
       "departureLocationId": int.parse(depratureLocationId.trim()),
       "arrivalLocationId": int.parse(arrivalLocationId),

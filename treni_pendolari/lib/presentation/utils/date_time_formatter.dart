@@ -51,6 +51,13 @@ class DateTimeFormatter {
     return "$hour:$minutes";
   }
 
+  static stringToTimeOfDay(String time) {
+    final parts = time.split(":");
+    final hour = int.parse(parts[0]);
+    final minute = int.parse(parts[1]);
+    return TimeOfDay(hour: hour, minute: minute);
+  }
+
   static bool isDelayPositive(String delay) {
     try {
       int delayNum = int.parse(delay);
@@ -69,6 +76,18 @@ class DateTimeFormatter {
     } catch (e) {
       return false;
     }
+  }
+
+  static TimeOfDay timeInMiddle(TimeOfDay start, TimeOfDay end) {
+    int startMinutes = start.hour * 60 + start.minute;
+    int endMinutes = end.hour * 60 + end.minute;
+
+    int midpointMinutes = (startMinutes + endMinutes) ~/ 2;
+
+    int hour = midpointMinutes ~/ 60;
+    int minute = midpointMinutes % 60;
+
+    return TimeOfDay(hour: hour, minute: minute);
   }
 
   static bool isTimeAfterNow(TimeOfDay time) {

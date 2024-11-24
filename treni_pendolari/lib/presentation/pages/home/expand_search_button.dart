@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treni_pendolari/domain/entities/search/response_trip.dart';
 import 'package:treni_pendolari/domain/entities/search/searching_trip.dart';
-import 'package:treni_pendolari/presentation/pages/trips-found/trips_found_page.dart';
+import 'package:treni_pendolari/presentation/pages/trips_found/trips_found_page.dart';
 import 'package:treni_pendolari/presentation/widgets/app_page_route_builder.dart';
 
 class ExpandSearchButton extends StatelessWidget {

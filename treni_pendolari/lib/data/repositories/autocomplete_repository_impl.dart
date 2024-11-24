@@ -22,7 +22,6 @@ class AutocompleteRepositoryImpl implements AutocompleteRepository {
       }
       return stations;
     } catch (e) {
-      print("autocomplerte repo");
       return Future.value([]);
     }
   }

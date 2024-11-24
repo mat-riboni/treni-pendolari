@@ -32,7 +32,7 @@ class HomeResponseList extends StatelessWidget {
                     Flexible(
                       flex: 1,
                       child: Text(
-                        trip != null ? trip!.from.name : "",
+                        responseList[0].from.name,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
@@ -42,8 +42,8 @@ class HomeResponseList extends StatelessWidget {
                     Flexible(
                       flex: 1,
                       child: Text(
+                        responseList[0].to.name,
                         overflow: TextOverflow.ellipsis,
-                        trip != null ? trip!.to.name : "",
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),

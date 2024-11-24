@@ -42,7 +42,13 @@ class _RoutineFormState extends State<RoutineForm> {
   final TextEditingController timeController = TextEditingController();
   late TimeOfDay selectedTime;
   RoutineTrip _trip = RoutineTripModel(
-      from: "", to: "", departureTime: "", fromId: "", toId: "");
+      from: "",
+      to: "",
+      departureTime: "",
+      fromId: "",
+      toId: "",
+      fromCode: "",
+      toCode: "");
   @override
   void initState() {
     super.initState();
@@ -97,19 +103,26 @@ class _RoutineFormState extends State<RoutineForm> {
         DateTime.now());
     searchingTrip = await Navigator.of(context)
         .push(AppPageRouteBuilder(SearchStationPage(trip: searchingTrip)));
+    _selectTime();
 
     if (searchingTrip.from.name.isNotEmpty) {
       setState(() {
         fromController.text = searchingTrip.from.name;
         _trip = _trip.copyWith(from: searchingTrip.from.name);
-        _trip = _trip.copyWith(fromId: searchingTrip.from.code);
+        _trip = _trip.copyWith(fromId: searchingTrip.from.locationId);
+        print("_------------");
+        print(_trip.fromId);
+        print("----------------");
       });
     }
     if (searchingTrip.to.name.isNotEmpty) {
       setState(() {
         toController.text = searchingTrip.to.name;
         _trip = _trip.copyWith(to: searchingTrip.to.name);
-        _trip = _trip.copyWith(toId: searchingTrip.to.code);
+        _trip = _trip.copyWith(toId: searchingTrip.to.locationId);
+        print("----------------------------");
+        print(_trip.toId);
+        print("-----------------------");
       });
     }
   }
@@ -165,7 +178,7 @@ class _RoutineFormState extends State<RoutineForm> {
           ),
           const Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(bottom: 20),
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(

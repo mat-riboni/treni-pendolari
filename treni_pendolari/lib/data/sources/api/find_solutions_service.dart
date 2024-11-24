@@ -19,7 +19,6 @@ class FindSolutionsService {
           body: jsonEncode(body));
       return jsonDecode(response.body);
     } catch (e) {
-      print("find solution service error");
       return Future.value({});
     }
   }

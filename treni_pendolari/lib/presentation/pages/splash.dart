@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:treni_pendolari/configs/app_images.dart';
 import 'package:treni_pendolari/domain/usecases/routine/get_routine.dart';
+import 'package:treni_pendolari/domain/usecases/search/first_search.dart';
 import 'package:treni_pendolari/presentation/pages/home/home.dart';
 import 'package:treni_pendolari/presentation/pages/routine_init/pages/departure.dart';
 
@@ -15,6 +16,8 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   final GetRoutineUseCase getRoutineUseCase =
       GetIt.instance<GetRoutineUseCase>();
+  final FirstSearchUseCase firstSearchUseCase =
+      GetIt.instance<FirstSearchUseCase>();
 
   @override
   void initState() {
@@ -66,7 +69,8 @@ class _SplashPageState extends State<SplashPage> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const HomePage()));
+              builder: (BuildContext context) =>
+                  HomePage(routineTrips: firstSearchUseCase.call())));
     }
   }
 }

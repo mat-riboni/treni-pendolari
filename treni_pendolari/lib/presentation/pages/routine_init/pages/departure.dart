@@ -33,9 +33,6 @@ class DepaturePage extends StatelessWidget {
           secondLabel: "Circa alle ore:",
           thirdLabel: "La mia destinazione è:",
           nextAction: () async {
-            await Future.delayed(const Duration(
-                milliseconds:
-                    200)); //Altrimenti non riesce a salvare prima di andare alla pagina dopo
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -46,19 +43,31 @@ class DepaturePage extends StatelessWidget {
         ));
   }
 
-  void _saveRoutine(RoutineTrip trip) {
+  void _saveRoutine(RoutineTrip trip) async {
     final Routine routine = RoutineModel(
         trip,
         RoutineTripModel(
-            from: "", fromId: "", to: "", toId: "", departureTime: ""),
+            from: "",
+            fromId: "",
+            fromCode: "",
+            to: "",
+            toId: "",
+            toCode: "",
+            departureTime: ""),
         true,
         "");
-    saveRoutineUseCase(routine);
+    await saveRoutineUseCase.call(routine);
   }
 
   void _skip(BuildContext context) {
     _saveRoutine(RoutineTripModel(
-        from: "", fromId: "", to: "", toId: "", departureTime: ""));
+        from: "",
+        fromId: "",
+        fromCode: "",
+        to: "",
+        toId: "",
+        toCode: "",
+        departureTime: ""));
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
   }

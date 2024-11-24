@@ -8,11 +8,13 @@ import 'package:treni_pendolari/presentation/pages/home/expand_search_button.dar
 
 import 'package:treni_pendolari/presentation/pages/home/form_block.dart';
 import 'package:treni_pendolari/presentation/pages/home/home_response_list.dart';
-import 'package:treni_pendolari/presentation/pages/trips-found/trips_found_page.dart';
+import 'package:treni_pendolari/presentation/pages/settings/settings.dart';
+import 'package:treni_pendolari/presentation/pages/trips_found/trips_found_page.dart';
 import 'package:treni_pendolari/presentation/widgets/app_page_route_builder.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, this.routineTrips});
+  final Future<List<ResponseTrip>>? routineTrips;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -24,10 +26,28 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _dateTimeController = TextEditingController();
   final SearchTripUseCase searchTripUseCase =
       GetIt.instance<SearchTripUseCase>();
-
   List<ResponseTrip> searchResult = [];
   SearchingTrip? _trip;
   bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _setFirstSearch();
+  }
+
+  _setFirstSearch() async {
+    if (widget.routineTrips != null) {
+      setState(() {
+        _isLoading = true;
+      });
+      List<ResponseTrip> trips = await widget.routineTrips!;
+      setState(() {
+        searchResult = trips;
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +95,11 @@ class _HomePageState extends State<HomePage> {
                           Column(
                             children: [
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const SettingsPage()));
+                                },
                                 icon: const Icon(
                                   Icons.settings,
                                   color: Colors.white,
