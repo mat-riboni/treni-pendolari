@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:treni_pendolari/configs/app_colors.dart';
-import 'package:treni_pendolari/configs/app_text_styles.dart';
 import 'package:treni_pendolari/domain/entities/search/response_trip.dart';
 import 'package:treni_pendolari/presentation/widgets/app_bar.dart';
 
