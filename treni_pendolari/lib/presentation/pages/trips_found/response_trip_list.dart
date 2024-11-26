@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:treni_pendolari/configs/app_colors.dart';
 import 'package:treni_pendolari/domain/entities/search/response_trip.dart';
 import 'package:treni_pendolari/domain/entities/search/searching_trip.dart';
+import 'package:treni_pendolari/presentation/pages/train_details/train_details.dart';
 import 'package:treni_pendolari/presentation/utils/date_time_formatter.dart';
 
 class ResponseTripList extends StatelessWidget {
@@ -56,210 +57,219 @@ class ResponseTripList extends StatelessWidget {
               child: ListView.builder(
                   itemCount: responseList.length,
                   itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                color: AppColors.lighterGrey,
-                              ),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 3),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.train,
-                                              color: AppColors.lightGrey,
-                                              size: 20,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              "${responseList[index].nodes[0].train.categoryShort} ${responseList[index].nodes[0].train.id}",
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.w500,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => TrainDetailsPage(
+                                responseTrip: responseList[index])));
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: AppColors.lighterGrey,
+                                ),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 3),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.train,
                                                 color: AppColors.lightGrey,
+                                                size: 20,
                                               ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const Expanded(
-                                      child: Row(),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            SvgPicture.asset(
-                                              "assets/icons/train_track.svg",
-                                              width: 30,
-                                            ),
-                                            const Text("Binario: ",
-                                                style: TextStyle(
-                                                    color: AppColors.lightGrey,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 12)),
-                                            Text(
-                                              responseList[index]
-                                                  .departureTrack,
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 17),
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      DateTimeFormatter.timeOfDayToString(
-                                          responseList[index].departureTime),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 22),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      responseList[index].from.name,
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          color: AppColors.lightGrey,
-                                          fontWeight: FontWeight.w500),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      DateTimeFormatter.timeOfDayToString(
-                                          responseList[index].arrivalTime),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 22),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      responseList[index].to.name,
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          color: AppColors.lightGrey,
-                                          fontWeight: FontWeight.w500),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                        "Cambi: ${(responseList[index].nodes.length - 1).toString()}",
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                "${responseList[index].nodes[0].train.categoryShort} ${responseList[index].nodes[0].train.id}",
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: AppColors.lightGrey,
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      const Expanded(
+                                        child: Row(),
+                                      ),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              SvgPicture.asset(
+                                                "assets/icons/train_track.svg",
+                                                width: 30,
+                                              ),
+                                              const Text("Binario: ",
+                                                  style: TextStyle(
+                                                      color:
+                                                          AppColors.lightGrey,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 12)),
+                                              Text(
+                                                responseList[index]
+                                                    .departureTrack,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 17),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        DateTimeFormatter.timeOfDayToString(
+                                            responseList[index].departureTime),
                                         style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.lightGrey,
-                                        )),
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              responseList[index].duration,
-                                              style: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            (!DateTimeFormatter.isTimeAfterNow(
-                                                        responseList[index]
-                                                            .departureTime) &&
-                                                    responseList[index]
-                                                        .delay
-                                                        .isNotEmpty)
-                                                ? Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 3),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                          color: DateTimeFormatter
-                                                                  .isDelayPositive(
-                                                                      responseList[
-                                                                              index]
-                                                                          .delay)
-                                                              ? const Color(
-                                                                  0xffFFDDDD)
-                                                              : const Color(
-                                                                  0xffD5FADC),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                                horizontal: 10),
-                                                        child: Text(
-                                                          "${DateTimeFormatter.isDelayPositiveOrZero(responseList[index].delay) ? "+" : ""}${responseList[index].delay}",
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color: DateTimeFormatter.isDelayPositive(
-                                                                      responseList[
-                                                                              index]
-                                                                          .delay)
-                                                                  ? const Color(
-                                                                      0xffC00000)
-                                                                  : Colors
-                                                                      .green),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 22),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        responseList[index].from.name,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: AppColors.lightGrey,
+                                            fontWeight: FontWeight.w500),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        DateTimeFormatter.timeOfDayToString(
+                                            responseList[index].arrivalTime),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 22),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        responseList[index].to.name,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: AppColors.lightGrey,
+                                            fontWeight: FontWeight.w500),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                          "Cambi: ${(responseList[index].nodes.length - 1).toString()}",
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.lightGrey,
+                                          )),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                responseList[index].duration,
+                                                style: const TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              (!DateTimeFormatter.isTimeAfterNow(
+                                                          responseList[index]
+                                                              .departureTime) &&
+                                                      responseList[index]
+                                                          .delay
+                                                          .isNotEmpty)
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 3),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: DateTimeFormatter
+                                                                    .isDelayPositive(
+                                                                        responseList[index]
+                                                                            .delay)
+                                                                ? const Color(
+                                                                    0xffFFDDDD)
+                                                                : const Color(
+                                                                    0xffD5FADC),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      10),
+                                                          child: Text(
+                                                            "${DateTimeFormatter.isDelayPositiveOrZero(responseList[index].delay) ? "+" : ""}${responseList[index].delay}",
+                                                            style: TextStyle(
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: DateTimeFormatter.isDelayPositive(
+                                                                        responseList[index]
+                                                                            .delay)
+                                                                    ? const Color(
+                                                                        0xffC00000)
+                                                                    : Colors
+                                                                        .green),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  )
-                                                : Container()
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
+                                                    )
+                                                  : Container()
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        )
-                      ],
+                          const SizedBox(
+                            height: 2,
+                          )
+                        ],
+                      ),
                     );
                   }),
             ),

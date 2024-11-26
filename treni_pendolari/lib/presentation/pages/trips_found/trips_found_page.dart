@@ -14,7 +14,14 @@ class TripsFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BasicAppBar(showLeading: true),
+      appBar: const BasicAppBar(
+        showLeading: true,
+        title: Text(
+          "Soluzioni",
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
       backgroundColor: AppColors.backgroundColor,
       body: ResponseTripList(responseList: responseList),
     );

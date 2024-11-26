@@ -27,13 +27,12 @@ class TrainStatusRepositoryImpl extends TrainStatusRepository {
       for (final stop in response["fermate"]) {
         final stopModel = StopModel.fromJson(stop);
         stops.add(stopModel);
-
+        print(stopModel.station.name);
         if (stopModel.station.code == tripDepartureStationCode) {
           departureTripTrack = stopModel.track;
         }
       }
       TrainStatus status = TrainStatusModel.fromJson(response);
-
       return TrainModel(
           id: train.id,
           originStationCode: train.originStationCode,
@@ -44,11 +43,11 @@ class TrainStatusRepositoryImpl extends TrainStatusRepository {
           departureTripTrack: departureTripTrack);
     } catch (e) {
       return TrainModel(
-          id: "",
-          originStationCode: "",
-          status: TrainStatusModel(0, "", ""),
-          category: "",
-          categoryShort: "");
+          id: train.id,
+          originStationCode: train.originStationCode,
+          status: TrainStatusModel(null, null, null),
+          category: train.category,
+          categoryShort: train.category);
     }
   }
 }
