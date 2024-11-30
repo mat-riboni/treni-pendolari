@@ -21,10 +21,6 @@ class FirstSearchRepositoryImpl implements FirstSearchRepository {
     Station from;
     Station to;
     DateTime switchDateTime;
-    print(routine.homecoming.from);
-    print(routine.homecoming.fromId);
-    print(routine.homecoming.to);
-    print(routine.homecoming.toId);
 
     if (routine.switchTripTime.isNotEmpty) {
       TimeOfDay switchTime =
@@ -33,10 +29,8 @@ class FirstSearchRepositoryImpl implements FirstSearchRepository {
       switchDateTime = DateTime(
           now.year, now.month, now.day, switchTime.hour, switchTime.minute);
     } else {
-      TimeOfDay departureTime =
-          DateTimeFormatter.stringToTimeOfDay(routine.daparture.departureTime);
-      TimeOfDay homecomingTime =
-          DateTimeFormatter.stringToTimeOfDay(routine.homecoming.departureTime);
+      TimeOfDay departureTime = routine.daparture.departureTime;
+      TimeOfDay homecomingTime = routine.homecoming.departureTime;
       final switchTime =
           DateTimeFormatter.timeInMiddle(departureTime, homecomingTime);
       final now = DateTime.now();

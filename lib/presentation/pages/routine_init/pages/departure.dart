@@ -53,7 +53,7 @@ class DepaturePage extends StatelessWidget {
             to: "",
             toId: "",
             toCode: "",
-            departureTime: ""),
+            departureTime: const TimeOfDay(hour: 0, minute: 0)),
         true,
         "");
     await saveRoutineUseCase.call(routine);
@@ -67,7 +67,7 @@ class DepaturePage extends StatelessWidget {
         to: "",
         toId: "",
         toCode: "",
-        departureTime: ""));
+        departureTime: const TimeOfDay(hour: 0, minute: 0)));
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
   }

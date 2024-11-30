@@ -27,7 +27,6 @@ class TrainStatusRepositoryImpl extends TrainStatusRepository {
       for (final stop in response["fermate"]) {
         final stopModel = StopModel.fromJson(stop);
         stops.add(stopModel);
-        print(stopModel.station.name);
         if (stopModel.station.code == tripDepartureStationCode) {
           departureTripTrack = stopModel.track;
         }

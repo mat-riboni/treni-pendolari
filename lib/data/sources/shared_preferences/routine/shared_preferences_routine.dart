@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treni_pendolari/data/sources/shared_preferences/routine/routine_keys.dart';
 import 'package:treni_pendolari/domain/entities/routine/routine.dart';
+import 'package:treni_pendolari/presentation/utils/date_time_formatter.dart';
 
 class SharedPreferencesRoutine {
   final SharedPreferences sharedPreferencesRoutine;
@@ -44,11 +45,11 @@ class SharedPreferencesRoutine {
     await sharedPreferencesRoutine.setString(
         RoutineKeys.homecomingToCode, routine.homecoming.toCode);
 
-    await sharedPreferencesRoutine.setString(
-        RoutineKeys.departureTime, routine.daparture.departureTime);
+    await sharedPreferencesRoutine.setString(RoutineKeys.departureTime,
+        DateTimeFormatter.timeOfDayToString(routine.daparture.departureTime));
 
-    await sharedPreferencesRoutine.setString(
-        RoutineKeys.homecomingTime, routine.homecoming.departureTime);
+    await sharedPreferencesRoutine.setString(RoutineKeys.homecomingTime,
+        DateTimeFormatter.timeOfDayToString(routine.homecoming.departureTime));
 
     await sharedPreferencesRoutine.setString(
         RoutineKeys.switchTripTime, routine.switchTripTime);

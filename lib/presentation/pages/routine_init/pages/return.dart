@@ -61,14 +61,6 @@ class _ReturnPageState extends State<ReturnPage> {
   }
 
   void _saveRoutine(RoutineTrip trip) async {
-    print("------------------------");
-    print(trip.from);
-    print(trip.fromId);
-    print(trip.fromCode);
-    print(trip.to);
-    print(trip.toId);
-    print(trip.toCode);
-    print("------------------------");
     final Routine newRoutine = RoutineModel(routine.daparture, trip, false, "");
     await saveRoutineUseCase.call(newRoutine);
   }
@@ -81,7 +73,7 @@ class _ReturnPageState extends State<ReturnPage> {
         to: "",
         toId: "",
         toCode: "",
-        departureTime: ""));
+        departureTime: const TimeOfDay(hour: 0, minute: 0)));
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
   }

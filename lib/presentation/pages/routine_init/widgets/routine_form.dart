@@ -44,7 +44,7 @@ class _RoutineFormState extends State<RoutineForm> {
   RoutineTrip _trip = RoutineTripModel(
       from: "",
       to: "",
-      departureTime: "",
+      departureTime: const TimeOfDay(hour: 0, minute: 0),
       fromId: "",
       toId: "",
       fromCode: "",
@@ -58,7 +58,7 @@ class _RoutineFormState extends State<RoutineForm> {
         .toString()
         .substring(10, selectedTime.toString().length - 1);
     timeController.text = timeString;
-    _trip = _trip.copyWith(departureTime: timeString);
+    _trip = _trip.copyWith(departureTime: selectedTime);
     if (widget.departureTrip != null) {
       _trip = _trip.copyWith(
           from: widget.departureTrip!.to, to: widget.departureTrip!.from);
@@ -83,7 +83,7 @@ class _RoutineFormState extends State<RoutineForm> {
       hourLabelText: "Ore",
       minuteLabelText: "Minuti",
     );
-
+    print(newTime);
     setState(() {
       if (newTime != null) {
         selectedTime = newTime;
@@ -91,7 +91,7 @@ class _RoutineFormState extends State<RoutineForm> {
             .toString()
             .substring(10, selectedTime.toString().length - 1);
         timeController.text = timeString;
-        _trip = _trip.copyWith(departureTime: timeString);
+        _trip = _trip.copyWith(departureTime: selectedTime);
       }
     });
   }
@@ -110,9 +110,6 @@ class _RoutineFormState extends State<RoutineForm> {
         fromController.text = searchingTrip.from.name;
         _trip = _trip.copyWith(from: searchingTrip.from.name);
         _trip = _trip.copyWith(fromId: searchingTrip.from.locationId);
-        print("_------------");
-        print(_trip.fromId);
-        print("----------------");
       });
     }
     if (searchingTrip.to.name.isNotEmpty) {
@@ -120,9 +117,6 @@ class _RoutineFormState extends State<RoutineForm> {
         toController.text = searchingTrip.to.name;
         _trip = _trip.copyWith(to: searchingTrip.to.name);
         _trip = _trip.copyWith(toId: searchingTrip.to.locationId);
-        print("----------------------------");
-        print(_trip.toId);
-        print("-----------------------");
       });
     }
   }

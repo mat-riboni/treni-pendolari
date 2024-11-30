@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:treni_pendolari/domain/entities/routine/routine_trip.dart';
 
 class RoutineTripModel extends RoutineTrip {
@@ -14,7 +15,7 @@ class RoutineTripModel extends RoutineTrip {
   RoutineTrip copyWith(
       {String? from,
       String? to,
-      String? departureTime,
+      TimeOfDay? departureTime,
       String? fromId,
       String? toId,
       String? fromCode,

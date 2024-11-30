@@ -52,6 +52,7 @@ class DateTimeFormatter {
   }
 
   static stringToTimeOfDay(String time) {
+    if (time.isEmpty) return const TimeOfDay(hour: 00, minute: 00);
     final parts = time.split(":");
     final hour = int.parse(parts[0]);
     final minute = int.parse(parts[1]);

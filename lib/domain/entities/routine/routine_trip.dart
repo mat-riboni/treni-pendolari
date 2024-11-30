@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class RoutineTrip {
   RoutineTrip({
     required this.from,
@@ -15,12 +17,12 @@ abstract class RoutineTrip {
   final String to;
   final String toId;
   final String toCode;
-  final String departureTime;
+  final TimeOfDay departureTime;
 
   RoutineTrip copyWith({
     String? from,
     String? to,
-    String? departureTime,
+    TimeOfDay? departureTime,
     String? fromId,
     String? toId,
     String? fromCode,
