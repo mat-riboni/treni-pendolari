@@ -21,10 +21,10 @@ class TrainStatusRepositoryImpl extends TrainStatusRepository {
     try {
       Map<String, dynamic> response =
           await trainStatusService.getTrainStatus(train, dateMills.toString());
-
       List<Stop> stops = [];
       String departureTripTrack = "";
-      for (final stop in response["fermate"]) {
+      List<dynamic> responseStops = response["fermate"];
+      for (final stop in responseStops) {
         final stopModel = StopModel.fromJson(stop);
         stops.add(stopModel);
         if (stopModel.station.code == tripDepartureStationCode) {
@@ -32,6 +32,7 @@ class TrainStatusRepositoryImpl extends TrainStatusRepository {
         }
       }
       TrainStatus status = TrainStatusModel.fromJson(response);
+
       return TrainModel(
           id: train.id,
           originStationCode: train.originStationCode,

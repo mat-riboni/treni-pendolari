@@ -28,17 +28,19 @@ class SearchRepositoryImpl implements SearchRepository {
             node.train, trip.departureDateTime, solution.departureCode);
         trains.add(train);
       }
+      Solution definitiveSolution = solution.copyWithTrain(trains);
+
       final tripModel = ResponseTripModel(
           from: trip.from,
           to: trip.to,
           departureTime: DateTimeFormatter.dateTimeStringToTimeOfDay(
-              solution.departureTime),
-          arrivalTime:
-              DateTimeFormatter.dateTimeStringToTimeOfDay(solution.arrivalTime),
+              definitiveSolution.departureTime),
+          arrivalTime: DateTimeFormatter.dateTimeStringToTimeOfDay(
+              definitiveSolution.arrivalTime),
           delay: buildDelay(trains),
-          duration: solution.duration,
+          duration: definitiveSolution.duration,
           departureTrack: trains[0].departureTripTrack,
-          nodes: solution.nodes);
+          nodes: definitiveSolution.nodes);
       tripsFound.add(tripModel);
     }
 

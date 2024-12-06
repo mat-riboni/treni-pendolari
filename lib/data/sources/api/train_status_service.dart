@@ -11,6 +11,7 @@ class TrainStatusService {
         train.originStationCode, train.id, dateMills));
     try {
       final response = await http.get(url);
+      print(response.body);
       return jsonDecode(response.body);
     } catch (e) {
       rethrow;

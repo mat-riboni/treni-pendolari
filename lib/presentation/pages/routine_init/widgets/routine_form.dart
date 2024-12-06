@@ -83,7 +83,6 @@ class _RoutineFormState extends State<RoutineForm> {
       hourLabelText: "Ore",
       minuteLabelText: "Minuti",
     );
-    print(newTime);
     setState(() {
       if (newTime != null) {
         selectedTime = newTime;

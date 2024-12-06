@@ -69,22 +69,31 @@ class HomeResponseList extends StatelessWidget {
                           showModalBottomSheet(
                               context: context,
                               builder: (BuildContext context) {
-                                return Container(
-                                  padding: const EdgeInsets.all(5),
-                                  child: const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Dettagli non disponibili",
-                                        style: AppTextStyles.h1,
+                                return const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(15),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "Dettagli non disponibili",
+                                            style: AppTextStyles.h1,
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Text(
+                                            "I dettagli del treno non sono stati forniti",
+                                            style: AppTextStyles.h3,
+                                          )
+                                        ],
                                       ),
-                                      Text(
-                                        "I dettagli del treno non sono stati forniti",
-                                        style: AppTextStyles.h3,
-                                      )
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 );
                               });
                         }
