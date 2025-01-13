@@ -1,7 +1,7 @@
-# Work in Progress
+# Treni Pendolari
 
-Questa vuole essere un'app per la ricerca di treni e la consultazione dei relativi status (ritardo, binario di partenza, capolinea, ecc.).  
-Per ora, l'applicazione è quella mostrata negli screenshot qui sotto. Lo sviluppo è in corso.
+Questa è un'app pensata per i pendolari per la ricerca di treni e la consultazione dei relativi status, ritardi, binario di partenza, capolinea, ecc...  
+Alla prima apertura verrà chiesto di inserire un viaggio di routine cosicché, ogni qualvolta si voglia consultare i soliti treni, non è necessario effettuare una nuova ricerca.
 
 ---
 
